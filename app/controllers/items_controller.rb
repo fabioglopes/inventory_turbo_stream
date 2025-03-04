@@ -52,6 +52,7 @@ class ItemsController < ApplicationController
     @item.destroy!
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@item) }
       format.html { redirect_to items_path, status: :see_other, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
