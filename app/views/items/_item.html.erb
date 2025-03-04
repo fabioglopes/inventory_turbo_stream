@@ -8,5 +8,11 @@
                 method: :patch,
                 class: "button" %>
     <%= link_to "Show", item, class: "button" %>
+  <%= button_to "Destroy",
+                item_path(item),
+                method: :delete,
+                class: "button",
+                data: { confirm: "Are you sure?" } %>
+
 </div>
 

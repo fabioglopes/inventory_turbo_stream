@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   def update
     if @item.toggle!
       respond_to do |format|
-        #format.turbo_stream
+        format.turbo_stream
         format.html { redirect_to items_path }
       end
     end
