@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   broadcasts_refreshes
-  after_update_commit -> { broadcast_replace_to("items")}
+  after_commit -> { broadcast_replace_to("items")}
+  # this one needed if we destroy through console
+  after_destroy -> { broadcast_remove_to("items")}
 
   include AASM
 
