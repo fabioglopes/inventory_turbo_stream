@@ -1,0 +1,12 @@
+
+<div id="<%= dom_id item %>">
+  <%= item.sku %>
+  <%= item.status %>
+
+  <%= button_to "Update Status",
+                item_path(item),
+                method: :patch,
+                class: "button" %>
+    <%= link_to "Show", item, class: "button" %>
+</div>
+

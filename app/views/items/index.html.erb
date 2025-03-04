@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Items" %>
+
+<h1>Items</h1>
+
+<%= turbo_stream_from "items" %>
+<%= turbo_frame_tag "items" do %>
+  <% @items.each do |item| %>
+    <%= render item %>
+  <% end %>
+<% end %>
+
+
+<%= link_to "New item", new_item_path, class: "button" %>
