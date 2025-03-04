@@ -36,10 +36,13 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
-    if @item.toggle!
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to items_path }
+    respond_to do |format|
+      if @item.update(item_params)
+        format.html { redirect_to @item, notice: "Item was successfully updated." }
+        format.json { render :show, status: :ok, location: @item }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +63,7 @@ class ItemsController < ApplicationController
     @item.update(status: new_status)
 
     respond_to do |format|
-      #format.turbo_stream { render turbo_stream: turbo_stream.replace(@item) }
+      format.turbo_stream
       format.html { redirect_to items_path }
     end
   end

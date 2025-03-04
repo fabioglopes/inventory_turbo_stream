@@ -1,18 +1,27 @@
+<tr id="<%= dom_id item %>">
+  <td class="px-6 py-4 whitespace-nowrap">
+    <%= item.sku %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <%= item.status %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap space-x-2">
+    <div class="flex space-x-2">
+      <%= button_to "Update Status",
+                    toggle_status_item_path(item),
+                    method: :patch,
+                    class: "px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" %>
 
-<div id="<%= dom_id item %>">
-  <%= item.sku %>
-  <%= item.status %>
+      <%= link_to "Show",
+                  item,
+                  class: "px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700" %>
 
-  <%= button_to "Update Status",
-                item_path(item),
-                method: :patch,
-                class: "button" %>
-    <%= link_to "Show", item, class: "button" %>
-  <%= button_to "Destroy",
-                item_path(item),
-                method: :delete,
-                class: "button",
-                data: { confirm: "Are you sure?" } %>
+      <%= button_to "Destroy",
+                    item_path(item),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" },
+                    class: "px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700" %>
+    </div>
 
-</div>
-
+  </td>
+</tr>

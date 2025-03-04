@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
   broadcasts_refreshes
   after_update_commit -> { broadcast_replace_to("items")}
-  # In your model or controller:
 
   include AASM
 
