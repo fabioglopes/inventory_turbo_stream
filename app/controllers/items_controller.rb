@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   # GET /items or /items.json
   def index
     @items = Item.all.order(id: :desc)
+    @item = Item.new
   end
 
   # GET /items/1 or /items/1.json
@@ -17,33 +18,50 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @item = Item.find(params[:id])
+    render turbo_frame: dom_id(@item, :edit_form), partial: "edit_form"
+  end
+
+  def inline_edit
+    @item = Item.find(params[:id])
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          @item,
+          partial: "edit_form",
+          locals: { item: @item }
+        )
+      end
+
+      format.html do
+        # fallback for non-Turbo requests
+        redirect_to item_path(@item)
+      end
+    end
   end
 
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
+    @items = Item.all
 
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: "Item was successfully created." }
-        format.json { render :show, status: :created, location: @item }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: "Item was successfully updated." }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = Item.find(params[:id])
+
+    if @item.update(item_params)
+      render @item
+    else
+      render partial: "edit_form", locals: { item: @item }, status: :unprocessable_entity
     end
   end
 
@@ -52,7 +70,7 @@ class ItemsController < ApplicationController
     @item.destroy!
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@item) }
+      #format.turbo_stream { render turbo_stream: turbo_stream.remove(@item) }
       format.html { redirect_to items_path, status: :see_other, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -64,7 +82,7 @@ class ItemsController < ApplicationController
     @item.update(status: new_status)
 
     respond_to do |format|
-      format.turbo_stream
+      #format.turbo_stream
       format.html { redirect_to items_path }
     end
   end

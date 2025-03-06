@@ -131,6 +131,8 @@
     <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.24.0, asdf: 3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.3.4, asdf: 3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stringio (v3.1.5, asdf: 3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tailwindcss-rails (v3.0.0, asdf: 3.3.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tailwindcss-ruby (v3.4.14, asdf: 3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.2, asdf: 3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thruster (v0.1.11, asdf: 3.3.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timeout (v0.4.3, asdf: 3.3.5) [gem]" level="application" />
@@ -164,6 +166,9 @@
         <option value="channel" />
         <option value="controller" />
         <option value="erb:authentication" />
+        <option value="erb:controller" />
+        <option value="erb:mailer" />
+        <option value="erb:scaffold" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
@@ -185,6 +190,7 @@
         <option value="solid_queue:install" />
         <option value="stimulus" />
         <option value="system_test" />
+        <option value="tailwindcss:authentication" />
         <option value="task" />
         <option value="test_unit:authentication" />
         <option value="test_unit:channel" />
@@ -206,6 +212,9 @@
         <option value="channel" />
         <option value="controller" />
         <option value="erb:authentication" />
+        <option value="erb:controller" />
+        <option value="erb:mailer" />
+        <option value="erb:scaffold" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
@@ -227,6 +236,7 @@
         <option value="solid_queue:install" />
         <option value="stimulus" />
         <option value="system_test" />
+        <option value="tailwindcss:authentication" />
         <option value="task" />
         <option value="test_unit:authentication" />
         <option value="test_unit:channel" />

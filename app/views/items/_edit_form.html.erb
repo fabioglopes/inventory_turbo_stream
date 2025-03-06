@@ -1,0 +1,34 @@
+<tr>
+  <%= form_with(model: @item, class: "contents") do |form| %>
+    <td class="px-6 py-4 whitespace-nowrap text-sm">
+      <%= form.text_field :sku,
+                          class: "rounded-md border-gray-300 shadow-sm" %>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <%= @item.status %>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-2 items-center">
+      <%= form.submit "Update",
+                      class: "px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700" %>
+
+      <%= link_to "Cancel",
+                  item_path(@item),
+                  class: "px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200" %>
+
+      <%= button_to "Update Status",
+                    toggle_status_item_path(@item),
+                    method: :patch,
+                    class: "px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" %>
+
+      <%= link_to "Show",
+                  @item,
+                  class: "px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700" %>
+
+      <%= button_to "Destroy",
+                    item_path(@item),
+                    method: :delete,
+                    class: "px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700",
+                    data: { turbo_confirm: "Are you sure?" } %>
+    </td>
+  <% end %>
+</tr>
