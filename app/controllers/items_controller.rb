@@ -24,18 +24,10 @@ class ItemsController < ApplicationController
 
   def inline_edit
     @item = Item.find(params[:id])
+
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          @item,
-          partial: "edit_form",
-          locals: { item: @item }
-        )
-      end
-
-      format.html do
-        # fallback for non-Turbo requests
-        redirect_to item_path(@item)
+        render turbo_stream: turbo_stream.replace(@item, partial: "edit_form", locals: { item: @item })
       end
     end
   end
@@ -58,10 +50,10 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
 
-    if @item.update(item_params)
-      render @item
-    else
-      render partial: "edit_form", locals: { item: @item }, status: :unprocessable_entity
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(@item, partial: "item", locals: { item: @item })
+      end
     end
   end
 

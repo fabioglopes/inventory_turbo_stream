@@ -1,8 +1,6 @@
 class Item < ApplicationRecord
-  #broadcasts_refreshes
-  after_commit -> { broadcast_replace_to("items")}
-  # this one needed if we destroy through console
-  after_destroy -> { broadcast_remove_to("items")}
+  broadcasts_refreshes
+  #after_commit -> { broadcast_refresh_to("items") }
 
   validates_presence_of :sku
 

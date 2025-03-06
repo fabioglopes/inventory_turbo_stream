@@ -1,3 +1,4 @@
+<%= turbo_stream_from item %>
 <tr id="<%= dom_id(item) %>">
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
     <%= item.sku %>
@@ -8,16 +9,12 @@
   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-2">
     <%= link_to "Edit",
                 inline_edit_item_path(item, format: :turbo_stream),
-                class: "text-indigo-600" %>
+                class: "px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700" %>
 
     <%= button_to "Update Status",
                   toggle_status_item_path(item),
                   method: :patch,
                   class: "px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" %>
-
-    <%= link_to "Show",
-                item,
-                class: "px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700" %>
 
     <%= button_to "Destroy",
                   item_path(item),

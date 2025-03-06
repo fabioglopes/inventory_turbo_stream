@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  namespace :items do
+    get :approved, to: "approved#index"
+    get :pending, to: "pending#index"
+  end
+
   resources :items do
     member do
       patch :toggle_status
       get :inline_edit
     end
   end
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
