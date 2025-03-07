@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
-  broadcasts_refreshes to: "items"
+  #broadcasts_refreshes
+  after_commit -> { broadcast_refresh_to("items") }
 
   validates_presence_of :sku
 
