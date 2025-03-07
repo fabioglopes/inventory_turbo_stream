@@ -9,15 +9,15 @@
       }" %>
     </li>
     <li class="me-2">
-      <%= link_to "Pending", items_pending_path, class: "inline-block p-4 #{
-        current_page?(items_pending_path) ?
+      <%= link_to "Pending", items_pending_index_path, class: "inline-block p-4 #{
+        current_page?(items_pending_index_path) ?
           'text-blue-600 border-b-2 border-blue-600' :
           'border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300'
       }" %>
     </li>
     <li class="me-2">
-      <%= link_to "Approved", items_approved_path, class: "inline-block p-4 #{
-        current_page?(items_approved_path) ?
+      <%= link_to "Approved", items_approved_index_path, class: "inline-block p-4 #{
+        current_page?(items_approved_index_path) ?
           'text-blue-600 border-b-2 border-blue-600' :
           'border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300'
       }" %>

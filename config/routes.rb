@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   namespace :items do
-    get :approved, to: "approved#index"
-    get :pending, to: "pending#index"
+    resources :approved, only: [:index, :update]
+    resources :pending, only: [:index, :update]
   end
 
   resources :items do
     member do
-      patch :toggle_status
       get :inline_edit
     end
   end

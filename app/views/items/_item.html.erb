@@ -10,12 +10,18 @@
     <%= link_to "Edit",
                 inline_edit_item_path(item, format: :turbo_stream),
                 class: "px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700" %>
-
-    <%= button_to "Update Status",
-                  toggle_status_item_path(item),
-                  method: :patch,
-                  class: "px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" %>
-
+    <% if item.may_approve? %>
+      <%= button_to "Approve",
+                    items_approved_path(item),
+                    method: :patch,
+                    class: "px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" %>
+    <% end %>
+    <% if item.may_pending? %>
+      <%= button_to "Pending",
+                    items_pending_path(item),
+                    method: :patch,
+                    class: "px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700" %>
+    <% end %>
     <%= button_to "Destroy",
                   item_path(item),
                   method: :delete,

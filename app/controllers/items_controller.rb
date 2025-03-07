@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: "Item was successfully created." }
+        format.html { redirect_to @items, notice: "Item was successfully created." }
       else
         format.html { render :index, status: :unprocessable_entity }
       end
@@ -67,18 +67,6 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def toggle_status
-    @item = Item.find(params[:id])
-    new_status = @item.toggle!
-    @item.update(status: new_status)
-
-    respond_to do |format|
-      #format.turbo_stream
-      format.html { redirect_to items_path }
-    end
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
