@@ -10,6 +10,7 @@ class Items::PendingController < ApplicationController
     @item.pending!
 
     respond_to do |format|
+      #format.turbo_stream
       format.html { redirect_to items_path }
     end
   end
