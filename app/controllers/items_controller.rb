@@ -19,7 +19,9 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @item = Item.find(params[:id])
-    render turbo_stream: turbo_stream.replace(@item, partial: "edit_form", locals: { item: @item })
+    @items = Item.all
+    render action: :index
+    #render turbo_stream: turbo_stream.replace(@item, partial: "edit_form", locals: { item: @item })
   end
 
   # POST /items or /items.json
@@ -41,9 +43,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(@item, partial: "item", locals: { item: @item })
-      end
+      format.html { redirect_to items_path, notice: "Item was successfully created." }
     end
   end
 

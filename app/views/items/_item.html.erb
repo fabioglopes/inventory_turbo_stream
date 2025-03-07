@@ -1,11 +1,22 @@
 <%= turbo_stream_from item %>
 <tr id="<%= dom_id(item) %>">
-  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-    <%= item.sku %>
-  </td>
-  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-    <%= item.status %>
-  </td>
+  <% if action_name == "edit" && item.id.to_s == params[:id] %>
+    <td class="px-6 py-4 whitespace-nowrap text-sm">
+      <%= form_with(model: @item, class: "contents") do |form| %>
+        <%= form.text_field :sku,
+                            class: "rounded-md border-gray-300 shadow-sm" %>
+        <%= form.submit "Update",
+                        class: "px-4 py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700" %>
+      <% end %>
+    </td>
+  <% else %>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <%= item.sku %>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <%= item.status %>
+    </td>
+  <% end %>
   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-2">
     <%= link_to "Edit",
                 edit_item_path(item),
