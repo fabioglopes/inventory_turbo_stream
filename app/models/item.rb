@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
+  belongs_to :channel
   # Option 1 will not include an item in the specific state page because the updates does not refresh the items list
-  broadcasts_refreshes
+  broadcasts_refreshes_to :channel
   #
 
   # option 2 add a conditional to check if the status has changed and then refresh the items list

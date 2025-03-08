@@ -8,11 +8,11 @@ default: &default
 development:
   primary:
     <<: *default
-    database: inventory_prod
+    database: inventory_dev
 
   cable:
     <<: *default
-    database: inventory_cable_prod
+    database: inventory_cable_dev
 
 test:
   <<: *default

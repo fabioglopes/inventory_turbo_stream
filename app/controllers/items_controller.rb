@@ -43,6 +43,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update(@item) }
       format.html { redirect_to items_path, notice: "Item was successfully created." }
     end
   end
@@ -52,7 +53,7 @@ class ItemsController < ApplicationController
     @item.destroy!
 
     respond_to do |format|
-      #format.turbo_stream { render turbo_stream: turbo_stream.remove(@item) }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@item) }
       format.html { redirect_to items_path, status: :see_other, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -66,6 +67,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.expect(item: [ :sku, :status ])
+      params.expect(item: [ :sku, :status , :channel_id])
     end
 end
