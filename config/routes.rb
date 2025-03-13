@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :items do
     resources :approved, only: [:index, :update]
     resources :pending, only: [:index, :update]
