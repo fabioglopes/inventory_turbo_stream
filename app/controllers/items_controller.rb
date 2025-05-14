@@ -27,14 +27,13 @@ class ItemsController < ApplicationController
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
-    @items = Item.all
+    @items = Item.all.order(id: :desc)
 
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to items_path, notice: "Item was successfully created." }
-      else
-        format.html { render :index, status: :unprocessable_entity }
-      end
+    if @item.save
+      #redirect_to items_path, notice: "Item was successfully created."
+      render turbo_stream: turbo_stream.update("items", partial: "items/index", locals: { items: @items, item: Item.new })
+    else
+      render :index, status: :unprocessable_entity
     end
   end
 
